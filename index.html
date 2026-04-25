@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+  <title>Family Day</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    body {
+      background-color: #fff4ef;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #4a2506;
+      /* Prevent pull-to-refresh on mobile if needed, though usually fine */
+      overscroll-behavior-y: none;
+    }
+
+    .kinetic-headline, .font-headline, .lexend-italic {
+      font-family: 'Lexend', sans-serif;
+      font-weight: 800;
+      font-style: italic;
+    }
+
+    .results-container {
+      transition: max-height 0.3s ease-out;
+      overflow: hidden;
+    }
+
+    .active-filter {
+      background-color: #9c3f00 !important;
+      color: white !important;
+    }
+
+    /* Bottom Nav Styles */
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #9c3f00;
+      opacity: 0.5;
+      transition: all 0.2s ease;
+    }
+    .nav-item.active {
+      opacity: 1;
+      color: #FF6B00;
+    }
+    .nav-item.active .material-symbols-outlined {
+      font-variation-settings: 'FILL' 1;
+      transform: scale(1.1);
+    }
+    
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body class="pb-24 pt-20"> <!-- Added padding for top header and bottom nav -->
+  
+  <!-- Common Top Header -->
+  <header class="fixed top-0 left-0 w-full z-50 bg-[#fff4ef]/90 backdrop-blur-md border-b border-[#ffdcc6] px-6 py-4 flex justify-between items-center shadow-sm">
+    <h1 class="kinetic-headline text-[#FF6B00] text-2xl tracking-widest uppercase">FAMILY DAY</h1>
+    <span id="page-title" class="kinetic-headline text-[#9c3f00] text-sm uppercase opacity-70">General</span>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-6">
+    
+    <!-- 1. GENERAL INFO SECTION -->
+    <section id="general-section" class="tab-content active">
+      <div class="mb-12">
+        <div class="relative rounded-2xl overflow-hidden aspect-[16/9] mb-6 shadow-lg bg-gray-200">
+          <img src="../general_information/screen.png" alt="Retreat" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-8">
+            <h2 class="text-white text-3xl md:text-4xl kinetic-headline">Sungai Johor Eco Retreat</h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <h2 class="kinetic-headline text-3xl mb-6 text-[#9c3f00]">Safety First</h2>
+          <div class="space-y-4 bg-white p-6 rounded-2xl shadow-sm border border-[#ffdcc6]">
+            <p class="text-lg flex items-center gap-3"><span class="text-2xl">🚑</span> <b>Medical Station:</b> Central Pavilion.</p>
+            <p class="text-lg flex items-center gap-3"><span class="text-2xl">🌊</span> <b>Water Safety:</b> Life jackets mandatory.</p>
+          </div>
+        </div>
+
+        <div class="bg-[#ffe3d2] p-8 rounded-2xl border-l-8 border-[#9c3f00] shadow-sm">
+          <h4 class="kinetic-headline text-2xl mb-4 text-[#9c3f00]">Official Contact</h4>
+          <div id="contact-list" class="space-y-4">
+            <div class="text-center opacity-50 py-4"><span class="material-symbols-outlined animate-spin">refresh</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. GAMES SECTION -->
+    <section id="games-section" class="tab-content">
+      <h3 class="kinetic-headline text-3xl text-[#9c3f00] mb-8">SCHEDULE & RESULTS</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="games-container">
+        <!-- Games will be loaded dynamically here -->
+        <div class="text-center opacity-50 py-10 col-span-full"><span class="material-symbols-outlined animate-spin text-4xl">refresh</span></div>
+      </div>
+    </section>
+
+    <!-- 3. PARTICIPANTS SECTION -->
+    <section id="participants-section" class="tab-content">
+      <div class="relative mb-6">
+        <div class="absolute inset-y-0 left-5 flex items-center pointer-events-none">
+          <span class="material-symbols-outlined text-[#FF6B00]">search</span>
+        </div>
+        <input id="search-input"
+          class="w-full h-14 pl-14 pr-6 bg-white border border-[#ffdcc6] rounded-2xl text-[16px] font-semibold focus:ring-4 focus:ring-[#ffede4] shadow-sm outline-none"
+          placeholder="Search family members..." type="text" />
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 mb-8">
+        <div class="md:col-span-8 bg-white border border-[#ffdcc6] p-6 rounded-2xl shadow-sm">
+          <span class="kinetic-headline text-[#9c3f00] uppercase text-xs tracking-widest mb-4 block">Squad Filter</span>
+          <div id="squad-filters" class="flex flex-wrap gap-2">
+            <button data-squad="All" class="squad-btn active-filter px-4 py-2 bg-[#ffede4] rounded-full font-bold text-[11px] hover:bg-[#ffdcc6] transition-colors">All</button>
+            <button data-squad="Green 💚" class="squad-btn px-4 py-2 bg-[#ffede4] rounded-full font-bold text-[11px] hover:bg-[#ffdcc6] transition-colors">Green 💚</button>
+            <button data-squad="Gold 💛" class="squad-btn px-4 py-2 bg-[#ffede4] rounded-full font-bold text-[11px] hover:bg-[#ffdcc6] transition-colors">Gold 💛</button>
+            <button data-squad="Red ❤️" class="squad-btn px-4 py-2 bg-[#ffede4] rounded-full font-bold text-[11px] hover:bg-[#ffdcc6] transition-colors">Red ❤️</button>
+            <button data-squad="Blue 💙" class="squad-btn px-4 py-2 bg-[#ffede4] rounded-full font-bold text-[11px] hover:bg-[#ffdcc6] transition-colors">Blue 💙</button>
+            <button data-squad="Black 🖤" class="squad-btn px-4 py-2 bg-[#ffede4] rounded-full font-bold text-[11px] hover:bg-[#ffdcc6] transition-colors">Black 🖤</button>
+            <button data-squad="Orange 🧡" class="squad-btn px-4 py-2 bg-[#ffede4] rounded-full font-bold text-[11px] hover:bg-[#ffdcc6] transition-colors">Orange 🧡</button>
+            <button data-squad="Peach 🍑" class="squad-btn px-4 py-2 bg-[#ffede4] rounded-full font-bold text-[11px] hover:bg-[#ffdcc6] transition-colors">Peach 🍑</button>
+            <button data-squad="Purple 💜" class="squad-btn px-4 py-2 bg-[#ffede4] rounded-full font-bold text-[11px] hover:bg-[#ffdcc6] transition-colors">Purple 💜</button>
+          </div>
+        </div>
+
+        <div class="md:col-span-4 bg-[#ffe3d2] p-6 rounded-2xl shadow-sm border border-[#ffdcc6]">
+          <span class="kinetic-headline text-[#9c3f00] uppercase text-xs tracking-widest mb-4 block">Categories</span>
+          <div class="flex flex-col gap-3">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input value="Adult" checked type="checkbox" class="cat-checkbox w-5 h-5 rounded text-[#FF6B00] focus:ring-[#FF6B00]" />
+              <span class="font-bold text-sm">Adult</span>
+            </label>
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input value="Kids" checked type="checkbox" class="cat-checkbox w-5 h-5 rounded text-[#FF6B00] focus:ring-[#FF6B00]" />
+              <span class="font-bold text-sm">Kids</span>
+            </label>
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input value="Senior" checked type="checkbox" class="cat-checkbox w-5 h-5 rounded text-[#FF6B00] focus:ring-[#FF6B00]" />
+              <span class="font-bold text-sm">Senior</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div id="master-list" class="space-y-6">
+        <div class="text-center opacity-50 py-10"><span class="material-symbols-outlined animate-spin text-4xl">refresh</span></div>
+      </div>
+    </section>
+
+    <!-- 4. LEADERBOARD SECTION -->
+    <section id="leaderboard-section" class="tab-content">
+      <div class="mb-12">
+        <div class="relative grid grid-cols-3 items-end gap-2 md:gap-6 bg-white p-6 rounded-2xl shadow-md border border-[#ffdcc6]">
+
+          <div class="flex flex-col items-center">
+            <div class="w-12 h-12 md:w-20 md:h-20 rounded-full bg-slate-700 flex items-center justify-center mb-2 shadow-lg">
+              <span class="text-white kinetic-headline text-xl">2</span>
+            </div>
+            <div class="bg-[#ffede4] w-full h-24 rounded-t-xl flex flex-col items-center justify-center p-2 text-center">
+              <span id="rank-2-name" class="kinetic-headline text-[#9c3f00] text-[10px] md:text-sm uppercase">-</span>
+              <span id="rank-2-score" class="kinetic-headline text-[#FF6B00] text-lg md:text-2xl">0</span>
+            </div>
+          </div>
+
+          <div class="flex flex-col items-center">
+            <div class="w-16 h-16 md:w-28 md:h-28 rounded-full bg-[#FF6B00] border-4 border-white flex items-center justify-center mb-2 shadow-xl z-10">
+              <span class="material-symbols-outlined text-white text-3xl md:text-5xl">emoji_events</span>
+            </div>
+            <div class="bg-gradient-to-t from-[#ff7a2f] to-[#ff985d] w-full h-32 rounded-t-xl flex flex-col items-center justify-center p-2 text-center shadow-lg relative">
+              <span id="rank-1-name" class="kinetic-headline text-white text-xs md:text-lg uppercase">-</span>
+              <span id="rank-1-score" class="kinetic-headline text-white text-2xl md:text-4xl">0</span>
+            </div>
+          </div>
+
+          <div class="flex flex-col items-center">
+            <div class="w-12 h-12 md:w-20 md:h-20 rounded-full bg-yellow-600 flex items-center justify-center mb-2 shadow-lg">
+              <span class="text-white kinetic-headline text-xl">3</span>
+            </div>
+            <div class="bg-[#ffede4] w-full h-20 rounded-t-xl flex flex-col items-center justify-center p-2 text-center">
+              <span id="rank-3-name" class="kinetic-headline text-[#9c3f00] text-[10px] md:text-sm uppercase">-</span>
+              <span id="rank-3-score" class="kinetic-headline text-[#FF6B00] text-base md:text-xl">0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="kinetic-headline text-2xl mb-6 text-[#9c3f00] uppercase tracking-widest">Full Standings</h2>
+        <div id="standings-list" class="space-y-4">
+          <div class="text-center opacity-50 py-4"><span class="material-symbols-outlined animate-spin text-2xl">refresh</span></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Bottom Navigation Bar -->
+  <nav class="fixed bottom-0 left-0 w-full bg-white border-t border-[#ffdcc6] shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-50 px-2 md:px-6 py-3 pb-safe">
+    <div class="max-w-md mx-auto flex justify-between items-center px-4">
+      
+      <button data-tab="general-section" data-title="General" class="nav-item active flex-1">
+        <span class="material-symbols-outlined text-2xl mb-1">info</span>
+        <span class="text-[10px] font-bold uppercase tracking-wider">Info</span>
+      </button>
+
+      <button data-tab="games-section" data-title="Games" class="nav-item flex-1">
+        <span class="material-symbols-outlined text-2xl mb-1">sports_esports</span>
+        <span class="text-[10px] font-bold uppercase tracking-wider">Games</span>
+      </button>
+
+      <button data-tab="participants-section" data-title="Participants" class="nav-item flex-1">
+        <span class="material-symbols-outlined text-2xl mb-1">group</span>
+        <span class="text-[10px] font-bold uppercase tracking-wider">Members</span>
+      </button>
+
+      <button data-tab="leaderboard-section" data-title="Leaderboard" class="nav-item flex-1">
+        <span class="material-symbols-outlined text-2xl mb-1">leaderboard</span>
+        <span class="text-[10px] font-bold uppercase tracking-wider">Ranks</span>
+      </button>
+
+    </div>
+  </nav>
+
+  <!-- Needed for iPhone safe area at the bottom -->
+  <style>
+    .pb-safe {
+      padding-bottom: env(safe-area-inset-bottom, 12px);
+    }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
