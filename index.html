@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+  <title>Family Day</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    body {
+      background-color: #fff4ef;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #4a2506;
+      /* Prevent pull-to-refresh on mobile if needed, though usually fine */
+      overscroll-behavior-y: none;
+    }
+
+    .kinetic-headline,
+    .font-headline,
+    .lexend-italic {
+      font-family: 'Lexend', sans-serif;
+      font-weight: 800;
+      font-style: italic;
+    }
+
+    .results-container {
+      transition: max-height 0.3s ease-out;
+      overflow: hidden;
+    }
+
+    .active-filter {
+      background-color: #9c3f00 !important;
+      color: white !important;
+    }
+
+    /* Bottom Nav Styles */
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #9c3f00;
+      opacity: 0.5;
+      transition: all 0.2s ease;
+    }
+
+    .nav-item.active {
+      opacity: 1;
+      color: #FF6B00;
+    }
+
+    .nav-item.active .material-symbols-outlined {
+      font-variation-settings: 'FILL' 1;
+      transform: scale(1.1);
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body class="pb-24 pt-20"> <!-- Added padding for top header and bottom nav -->
+
+  <!-- Common Top Header -->
+  <header
+    class="fixed top-0 left-0 w-full z-50 bg-[#fff4ef]/90 backdrop-blur-md border-b border-[#ffdcc6] px-6 py-4 flex justify-between items-center shadow-sm">
+    <h1 class="kinetic-headline text-[#FF6B00] text-2xl tracking-widest uppercase">FAMILY DAY</h1>
+    <span id="page-title" class="kinetic-headline text-[#9c3f00] text-sm uppercase opacity-70">General</span>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-6">
+
+    <!-- 1. GENERAL INFO SECTION -->
+    <section id="general-section" class="tab-content active">
+      <div class="mb-12">
+        <div class="relative rounded-2xl overflow-hidden aspect-[16/9] mb-6 shadow-lg bg-gray-200">
+          <img src="../sunjer11.jpg" alt="Sungai Johor Eco Retreat"
+            class="absolute inset-0 w-full h-full object-cover" />
+          <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
+            <h2 class="text-white text-2xl md:text-4xl kinetic-headline bg-black/30 p-2 rounded w-fit">Family Day Sungai
+              Johor Eco Retreat</h2>
+            <a href="https://www.google.com/maps/search/?api=1&query=Sungai+Johor+Eco+Retreat" target="_blank"
+              class="text-white mt-2 font-medium flex items-center gap-2 bg-black/40 hover:bg-black/60 transition-colors px-3 py-1.5 rounded-lg w-fit backdrop-blur-sm group shadow-sm">
+              <span class="material-symbols-outlined text-[#FF6B00]">location_on</span>
+              <span>Kota Tinggi, Johor</span>
+              <span class="material-symbols-outlined text-xs opacity-50 ml-1">open_in_new</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Event Gallery Button -->
+        <a href="https://drive.google.com/drive/folders/1MagcMD4qJoWFMR6A9V5TITztjiHlpS-t" target="_blank"
+          class="flex items-center justify-between w-full bg-gradient-to-r from-[#FF6B00] to-[#ff985d] p-5 rounded-2xl shadow-md hover:shadow-lg transition-all group">
+          <div class="flex items-center gap-4">
+            <div
+              class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm group-hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined text-white text-2xl">photo_library</span>
+            </div>
+            <div>
+              <h3 class="kinetic-headline text-white text-xl uppercase tracking-wider">Event Gallery</h3>
+              <p class="text-white/80 text-xs md:text-sm font-medium">View and download official family day photos</p>
+            </div>
+          </div>
+          <span
+            class="material-symbols-outlined text-white text-3xl opacity-70 group-hover:opacity-100 group-hover:translate-x-1 transition-all">chevron_right</span>
+        </a>
+      </div>
+
+      <!-- Bible Verse Section -->
+      <section class="mb-12">
+        <div
+          class="relative bg-gradient-to-br from-[#9c3f00] to-[#FF6B00] rounded-2xl p-8 shadow-xl overflow-hidden text-center">
+          <span class="absolute top-4 left-6 text-white/10 text-[8rem] leading-none font-serif select-none"
+            aria-hidden="true">"</span>
+          <span class="absolute bottom-0 right-6 text-white/10 text-[8rem] leading-none font-serif select-none"
+            aria-hidden="true">"</span>
+          <div class="relative z-10">
+            <span class="material-symbols-outlined text-white/70 text-4xl mb-3 block">menu_book</span>
+            <p class="text-white text-xl md:text-2xl font-medium italic leading-relaxed mb-4">
+              "How good and pleasant it is when God's people live together in unity!"
+            </p>
+            <p class="kinetic-headline text-white/80 text-base tracking-widest uppercase">Psalm 133:1</p>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- Medical & Safety Section -->
+      <section class="mb-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="flex flex-col gap-6">
+          <!-- Closest Medical Center -->
+          <div class="bg-[#ffe3d2] rounded-2xl p-6 border-l-8 border-[#9c3f00] shadow-sm">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="material-symbols-outlined text-[#9c3f00] text-3xl">emergency</span>
+              <h2 class="kinetic-headline text-2xl">Closest Medical Center</h2>
+            </div>
+            <ul class="space-y-3">
+              <li>
+                <a href="https://www.google.com/maps/search/?api=1&query=Hospital+Kota+Tinggi" target="_blank"
+                  class="flex items-center gap-3 p-2 rounded-xl hover:bg-[#ffd3b8] transition-colors group">
+                  <span class="material-symbols-outlined text-[#FF6B00] text-xl flex-shrink-0">local_hospital</span>
+                  <span class="text-base font-medium flex-1">Hospital Kota Tinggi (HKT)</span>
+                  <span
+                    class="material-symbols-outlined text-[#9c3f00] text-base opacity-40 group-hover:opacity-100 transition-opacity">open_in_new</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.google.com/maps/search/?api=1&query=Hospital+Sultan+Ismail+Johor+Bahru"
+                  target="_blank"
+                  class="flex items-center gap-3 p-2 rounded-xl hover:bg-[#ffd3b8] transition-colors group">
+                  <span class="material-symbols-outlined text-[#FF6B00] text-xl flex-shrink-0">local_hospital</span>
+                  <span class="text-base font-medium flex-1">Hospital Sultan Ismail</span>
+                  <span
+                    class="material-symbols-outlined text-[#9c3f00] text-base opacity-40 group-hover:opacity-100 transition-opacity">open_in_new</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Schedule Section -->
+          <div class="bg-white rounded-2xl p-6 border-l-8 border-[#FF6B00] shadow-sm">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="material-symbols-outlined text-[#FF6B00] text-3xl">schedule</span>
+              <h2 class="kinetic-headline text-2xl">Schedule</h2>
+            </div>
+            <div class="space-y-3">
+              <div class="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-4 border-b border-[#ffdcc6] pb-3">
+                <div class="flex-shrink-0 sm:w-36 text-sm font-bold text-[#9c3f00]">7.00 a.m - 9.00 a.m</div>
+                <div class="text-sm font-medium">Arrival and Registration</div>
+              </div>
+              <div class="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-4 border-b border-[#ffdcc6] pb-3">
+                <div class="flex-shrink-0 sm:w-36 text-sm font-bold text-[#9c3f00]">9.00 a.m - 9.30 a.m</div>
+                <div class="text-sm font-medium">Breakfast</div>
+              </div>
+              <div class="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-4 border-b border-[#ffdcc6] pb-3">
+                <div class="flex-shrink-0 sm:w-36 text-sm font-bold text-[#9c3f00]">9.30 a.m - 10.30 a.m</div>
+                <div class="text-sm font-medium">Opening, Praise &amp; Worship and Group Photo</div>
+              </div>
+              <div class="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-4 border-b border-[#ffdcc6] pb-3">
+                <div class="flex-shrink-0 sm:w-36 text-sm font-bold text-[#9c3f00]">10.30 a.m - 1.00 p.m</div>
+                <div class="text-sm font-medium">Games Session 1</div>
+              </div>
+              <div class="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-4 border-b border-[#ffdcc6] pb-3">
+                <div class="flex-shrink-0 sm:w-36 text-sm font-bold text-[#9c3f00]">1.00 p.m - 2.30 p.m</div>
+                <div class="text-sm font-medium">Lunch Break</div>
+              </div>
+              <div class="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-4 border-b border-[#ffdcc6] pb-3">
+                <div class="flex-shrink-0 sm:w-36 text-sm font-bold text-[#9c3f00]">2.30 p.m - 4.30 p.m</div>
+                <div class="text-sm font-medium">Games Session 2</div>
+              </div>
+              <div class="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-4 border-b border-[#ffdcc6] pb-3">
+                <div class="flex-shrink-0 sm:w-36 text-sm font-bold text-[#9c3f00]">4.30 p.m - 5.00 p.m</div>
+                <div class="text-sm font-medium">Tea Break</div>
+              </div>
+              <div class="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-4">
+                <div class="flex-shrink-0 sm:w-36 text-sm font-bold text-[#9c3f00]">5.00 p.m</div>
+                <div class="text-sm font-medium">Awards Ceremony and Closing</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reminders & Safety Precautions -->
+          <div class="bg-[#fff4ef] rounded-2xl p-6 border-l-8 border-[#FF6B00] shadow-sm">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="material-symbols-outlined text-[#FF6B00] text-3xl">warning_amber</span>
+              <h2 class="kinetic-headline text-2xl">Reminders &amp; Safety</h2>
+            </div>
+            <ol class="space-y-2.5 list-none">
+              <li class="flex items-start gap-3">
+                <span
+                  class="flex-shrink-0 w-6 h-6 rounded-full bg-[#FF6B00] text-white text-xs font-bold flex items-center justify-center mt-0.5">1</span>
+                <span class="text-sm font-medium">Do come early for registration</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span
+                  class="flex-shrink-0 w-6 h-6 rounded-full bg-[#FF6B00] text-white text-xs font-bold flex items-center justify-center mt-0.5">2</span>
+                <span class="text-sm font-medium">Follow all instructions at all times</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span
+                  class="flex-shrink-0 w-6 h-6 rounded-full bg-[#FF6B00] text-white text-xs font-bold flex items-center justify-center mt-0.5">3</span>
+                <span class="text-sm font-medium">Stay within designated areas</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span
+                  class="flex-shrink-0 w-6 h-6 rounded-full bg-[#9c3f00] text-white text-xs font-bold flex items-center justify-center mt-0.5">4</span>
+                <span class="text-sm font-medium">Keep away from the river / restricted areas</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span
+                  class="flex-shrink-0 w-6 h-6 rounded-full bg-[#FF6B00] text-white text-xs font-bold flex items-center justify-center mt-0.5">5</span>
+                <span class="text-sm font-medium">Drink water regularly &amp; take breaks</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span
+                  class="flex-shrink-0 w-6 h-6 rounded-full bg-[#9c3f00] text-white text-xs font-bold flex items-center justify-center mt-0.5">6</span>
+                <span class="text-sm font-medium">No rough play or pushing</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span
+                  class="flex-shrink-0 w-6 h-6 rounded-full bg-[#FF6B00] text-white text-xs font-bold flex items-center justify-center mt-0.5">7</span>
+                <span class="text-sm font-medium">Report injuries or feeling unwell immediately</span>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- Official Contact -->
+        <div class="bg-[#ffe3d2] p-8 rounded-2xl border-l-8 border-[#9c3f00] shadow-sm h-fit">
+          <div class="flex items-center gap-3 mb-6">
+            <span class="material-symbols-outlined text-[#9c3f00] text-3xl">contacts</span>
+            <h2 class="kinetic-headline text-2xl">Official Contact</h2>
+          </div>
+          <div id="contact-list" class="space-y-4">
+            <div class="text-center opacity-50 py-4"><span class="material-symbols-outlined animate-spin">refresh</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Developer Credits -->
+      <div class="mt-8 mb-4 text-center opacity-70">
+        <p class="text-sm font-medium">This web app was developed by Raizel anak Amie</p>
+      </div>
+    </section>
+
+    <!-- 2. GAMES SECTION -->
+    <section id="games-section" class="tab-content">
+      <h3 class="kinetic-headline text-3xl text-[#9c3f00] mb-4">SCHEDULE & RESULTS</h3>
+      <!-- Category Filters -->
+      <div class="mb-4 space-y-1">
+        <p class="text-[11px] font-bold opacity-70 text-[#9c3f00]">* Kids games only for 12 years and below</p>
+        <p class="text-[11px] font-bold opacity-70 text-[#9c3f00]">* Senior games and youth/adult participants can mixed
+          each other</p>
+      </div>
+      <div class="flex flex-wrap gap-2 mb-6">
+        <button
+          class="game-cat-btn active-filter px-4 py-2 bg-[#ffede4] rounded-full font-bold text-[11px] hover:bg-[#ffdcc6] transition-colors"
+          data-cat="all">All</button>
+        <button
+          class="game-cat-btn px-4 py-2 bg-[#ffede4] rounded-full font-bold text-[11px] hover:bg-[#ffdcc6] transition-colors"
+          data-cat="youth/adult">Youth/Adult</button>
+        <button
+          class="game-cat-btn px-4 py-2 bg-[#ffede4] rounded-full font-bold text-[11px] hover:bg-[#ffdcc6] transition-colors"
+          data-cat="kids">Kids</button>
+        <button
+          class="game-cat-btn px-4 py-2 bg-[#ffede4] rounded-full font-bold text-[11px] hover:bg-[#ffdcc6] transition-colors"
+          data-cat="senior">Senior</button>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="games-container">
+        <!-- Games will be loaded dynamically here -->
+        <div class="text-center opacity-50 py-10 col-span-full"><span
+            class="material-symbols-outlined animate-spin text-4xl">refresh</span></div>
+      </div>
+    </section>
+
+    <!-- 3. PARTICIPANTS SECTION -->
+    <section id="participants-section" class="tab-content">
+      <div class="relative mb-6">
+        <div class="absolute inset-y-0 left-5 flex items-center pointer-events-none">
+          <span class="material-symbols-outlined text-[#FF6B00]">search</span>
+        </div>
+        <input id="search-input"
+          class="w-full h-14 pl-14 pr-6 bg-white border border-[#ffdcc6] rounded-2xl text-[16px] font-semibold focus:ring-4 focus:ring-[#ffede4] shadow-sm outline-none"
+          placeholder="Search family members..." type="text" />
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 mb-8">
+        <div class="md:col-span-8 bg-white border border-[#ffdcc6] p-6 rounded-2xl shadow-sm">
+          <span class="kinetic-headline text-[#9c3f00] uppercase text-xs tracking-widest mb-4 block">Squad Filter</span>
+          <div id="squad-filters" class="flex flex-wrap gap-2">
+            <button data-squad="All"
+              class="squad-btn active-filter px-4 py-2 bg-[#ffede4] rounded-full font-bold text-[11px] hover:bg-[#ffdcc6] transition-colors">All</button>
+            <button data-squad="Green 💚"
+              class="squad-btn px-4 py-2 bg-[#ffede4] rounded-full font-bold text-[11px] hover:bg-[#ffdcc6] transition-colors">Green
+              💚</button>
+            <button data-squad="Gold 💛"
+              class="squad-btn px-4 py-2 bg-[#ffede4] rounded-full font-bold text-[11px] hover:bg-[#ffdcc6] transition-colors">Gold
+              💛</button>
+            <button data-squad="Red ❤️"
+              class="squad-btn px-4 py-2 bg-[#ffede4] rounded-full font-bold text-[11px] hover:bg-[#ffdcc6] transition-colors">Red
+              ❤️</button>
+            <button data-squad="Blue 💙"
+              class="squad-btn px-4 py-2 bg-[#ffede4] rounded-full font-bold text-[11px] hover:bg-[#ffdcc6] transition-colors">Blue
+              💙</button>
+            <button data-squad="Black 🖤"
+              class="squad-btn px-4 py-2 bg-[#ffede4] rounded-full font-bold text-[11px] hover:bg-[#ffdcc6] transition-colors">Black
+              🖤</button>
+            <button data-squad="Orange 🧡"
+              class="squad-btn px-4 py-2 bg-[#ffede4] rounded-full font-bold text-[11px] hover:bg-[#ffdcc6] transition-colors">Orange
+              🧡</button>
+            <button data-squad="Peach 🍑"
+              class="squad-btn px-4 py-2 bg-[#ffede4] rounded-full font-bold text-[11px] hover:bg-[#ffdcc6] transition-colors">Peach
+              🍑</button>
+            <button data-squad="Purple 💜"
+              class="squad-btn px-4 py-2 bg-[#ffede4] rounded-full font-bold text-[11px] hover:bg-[#ffdcc6] transition-colors">Purple
+              💜</button>
+          </div>
+        </div>
+
+        <div class="md:col-span-4 bg-[#ffe3d2] p-6 rounded-2xl shadow-sm border border-[#ffdcc6]">
+          <span class="kinetic-headline text-[#9c3f00] uppercase text-xs tracking-widest mb-4 block">Categories</span>
+          <div class="flex flex-col gap-3">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input value="Youth/Adult" checked type="checkbox"
+                class="cat-checkbox w-5 h-5 rounded text-[#FF6B00] focus:ring-[#FF6B00]" />
+              <span class="font-bold text-sm">Youth/Adult</span>
+            </label>
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input value="Kids" checked type="checkbox"
+                class="cat-checkbox w-5 h-5 rounded text-[#FF6B00] focus:ring-[#FF6B00]" />
+              <span class="font-bold text-sm">Kids</span>
+            </label>
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input value="Senior" checked type="checkbox"
+                class="cat-checkbox w-5 h-5 rounded text-[#FF6B00] focus:ring-[#FF6B00]" />
+              <span class="font-bold text-sm">Senior</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div id="master-list" class="space-y-6">
+        <div class="text-center opacity-50 py-10"><span
+            class="material-symbols-outlined animate-spin text-4xl">refresh</span></div>
+      </div>
+    </section>
+
+    <!-- 4. LEADERBOARD SECTION -->
+    <section id="leaderboard-section" class="tab-content">
+      <div class="mb-12">
+        <div
+          class="relative grid grid-cols-3 items-end gap-2 md:gap-6 bg-white p-6 rounded-2xl shadow-md border border-[#ffdcc6]">
+
+          <div class="flex flex-col items-center">
+            <div
+              class="w-12 h-12 md:w-20 md:h-20 rounded-full bg-slate-700 flex items-center justify-center mb-2 shadow-lg">
+              <span class="text-white kinetic-headline text-xl">2</span>
+            </div>
+            <div
+              class="bg-[#ffede4] w-full h-24 rounded-t-xl flex flex-col items-center justify-center p-2 text-center">
+              <span id="rank-2-name" class="kinetic-headline text-[#9c3f00] text-[10px] md:text-sm uppercase">-</span>
+              <span id="rank-2-score" class="kinetic-headline text-[#FF6B00] text-lg md:text-2xl">0</span>
+            </div>
+          </div>
+
+          <div class="flex flex-col items-center">
+            <div
+              class="w-16 h-16 md:w-28 md:h-28 rounded-full bg-[#FF6B00] border-4 border-white flex items-center justify-center mb-2 shadow-xl z-10">
+              <span class="material-symbols-outlined text-white text-3xl md:text-5xl">emoji_events</span>
+            </div>
+            <div
+              class="bg-gradient-to-t from-[#ff7a2f] to-[#ff985d] w-full h-32 rounded-t-xl flex flex-col items-center justify-center p-2 text-center shadow-lg relative">
+              <span id="rank-1-name" class="kinetic-headline text-white text-xs md:text-lg uppercase">-</span>
+              <span id="rank-1-score" class="kinetic-headline text-white text-2xl md:text-4xl">0</span>
+            </div>
+          </div>
+
+          <div class="flex flex-col items-center">
+            <div
+              class="w-12 h-12 md:w-20 md:h-20 rounded-full bg-yellow-600 flex items-center justify-center mb-2 shadow-lg">
+              <span class="text-white kinetic-headline text-xl">3</span>
+            </div>
+            <div
+              class="bg-[#ffede4] w-full h-20 rounded-t-xl flex flex-col items-center justify-center p-2 text-center">
+              <span id="rank-3-name" class="kinetic-headline text-[#9c3f00] text-[10px] md:text-sm uppercase">-</span>
+              <span id="rank-3-score" class="kinetic-headline text-[#FF6B00] text-base md:text-xl">0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="kinetic-headline text-2xl mb-6 text-[#9c3f00] uppercase tracking-widest">Full Standings</h2>
+        <div id="standings-list" class="space-y-4">
+          <div class="text-center opacity-50 py-4"><span
+              class="material-symbols-outlined animate-spin text-2xl">refresh</span></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Bottom Navigation Bar -->
+  <nav
+    class="fixed bottom-0 left-0 w-full bg-white border-t border-[#ffdcc6] shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-50 px-2 md:px-6 py-3 pb-safe">
+    <div class="max-w-md mx-auto flex justify-between items-center px-4">
+
+      <button data-tab="general-section" data-title="General" class="nav-item active flex-1">
+        <span class="material-symbols-outlined text-2xl mb-1">info</span>
+        <span class="text-[10px] font-bold uppercase tracking-wider">Info</span>
+      </button>
+
+      <button data-tab="games-section" data-title="Games" class="nav-item flex-1">
+        <span class="material-symbols-outlined text-2xl mb-1">sports_esports</span>
+        <span class="text-[10px] font-bold uppercase tracking-wider">Games</span>
+      </button>
+
+      <button data-tab="participants-section" data-title="Participants" class="nav-item flex-1">
+        <span class="material-symbols-outlined text-2xl mb-1">group</span>
+        <span class="text-[10px] font-bold uppercase tracking-wider">Members</span>
+      </button>
+
+      <button data-tab="leaderboard-section" data-title="Leaderboard" class="nav-item flex-1">
+        <span class="material-symbols-outlined text-2xl mb-1">leaderboard</span>
+        <span class="text-[10px] font-bold uppercase tracking-wider">Ranks</span>
+      </button>
+
+    </div>
+  </nav>
+
+  <!-- Needed for iPhone safe area at the bottom -->
+  <style>
+    .pb-safe {
+      padding-bottom: env(safe-area-inset-bottom, 12px);
+    }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
